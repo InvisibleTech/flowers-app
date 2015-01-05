@@ -57,7 +57,13 @@ class FlowersController (implicit val swagger: Swagger) extends ScalatraServlet 
     }
   }
 
-  post("/create") {
+  val createFlower = 
+    (apiOperation[Flower]("createFlower")
+      summary "Create new Flower and add to list."
+      parameters(bodyParam[Flower]("body").description("Flower to add.").required)
+    )
+
+  post("/create", operation(createFlower)) {
    val newFlower = parsedBody.extract[Flower]
 
    FlowerData.all.append(newFlower)
