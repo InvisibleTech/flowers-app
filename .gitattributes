@@ -1,1 +1,2 @@
 *.scala linguist-language=Scala
+webapp/* linguist-documentation
